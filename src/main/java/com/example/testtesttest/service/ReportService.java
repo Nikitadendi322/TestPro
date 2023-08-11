@@ -10,6 +10,6 @@ public interface ReportService {
 
     public ResponseEntity<Resource> upload(int id);
 
-    String saveReportToFile(String reportJson);
-    ResponseEntity<Resource> getReportById(Integer id);
+    public String saveReportToFile(String reportJson);
+    public ResponseEntity<Resource> getReportById(Integer id);
 }

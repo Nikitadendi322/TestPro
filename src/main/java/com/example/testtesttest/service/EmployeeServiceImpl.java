@@ -3,7 +3,9 @@ package com.example.testtesttest.service;
 import com.example.testtesttest.DTO.EmployeeDTO;
 import com.example.testtesttest.DTO.EmployeeFullInfo;
 import com.example.testtesttest.DTO.EmployeeReport;
+import com.example.testtesttest.DTO.FullInfo;
 import com.example.testtesttest.pojo.Employee;
+import com.example.testtesttest.pojo.Position;
 import com.example.testtesttest.repository.EmployeeRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
@@ -46,10 +48,10 @@ public class EmployeeServiceImpl implements EmployeeService{
     public void addEmployee(Employee employee) {
     }
     @Override
-    public List<EmployeeFullInfo> getAllEmployees() {
+    public List<EmployeeDTO> getAllEmployees() {
         logger.info("Was invoked method for getAllEmployees");
         return employeeRepository.findAllEmployees().stream()
-                .map(EmployeeDTO::fromEmployee)
+                .map((EmployeeFullInfo employee) -> EmployeeDTO.fromEmployee(employee))
                 .collect(Collectors.toList());
     }
     @Override
@@ -61,7 +63,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public List<EmployeeFullInfo> employeesPosition(java.util.Optional position) {
+    public List<EmployeeDTO> employeesPosition(java.util.Optional position) {
         return null;
     }
 
@@ -73,7 +75,7 @@ public class EmployeeServiceImpl implements EmployeeService{
                 .collect(Collectors.toList());
     }
     @Override
-    public List<EmployeeFullInfo> fullInfo(int id) {
+    public List<FullInfo> fullInfo(int id) {
         logger.info("Was invoked method for create employee:{} ");
         return employeeRepository.getEmployeesFullInfo(id).stream()
                 .map((Object t) -> EmployeeFullInfo.fromEmployeeFullInfo(t))
@@ -114,6 +116,61 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public EmployeeDTO getEmployeeById(Integer id) {
+        return null;
+    }
+
+    @Override
+    public List<Employee> getAllEmployee() {
+        return null;
+    }
+
+    @Override
+    public List<Employee> showEmployee() {
+        return null;
+    }
+
+    @Override
+    public Employee createEmployee(int id, String name, int salary, Position position) {
+        return null;
+    }
+
+    @Override
+    public void editEmployee(int id) {
+
+    }
+
+    @Override
+    public List<Employee> getEmployee(int id) {
+        return null;
+    }
+
+    @Override
+    public void deleteEmployee(int id) {
+
+    }
+
+    @Override
+    public List<Employee> getEmployeeSalaryHigher(int salary) {
+        return null;
+    }
+
+    @Override
+    public int sumSalary() {
+        return 0;
+    }
+
+    @Override
+    public int minSalary() {
+        return 0;
+    }
+
+    @Override
+    public int maxSalary() {
+        return 0;
+    }
+
+    @Override
+    public List<Employee> highSalary() {
         return null;
     }
 }

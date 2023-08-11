@@ -15,4 +15,6 @@ public interface ReportRepository extends CrudRepository<Report, Integer> {
 
     @Override
     Optional<Report> findById(Integer integer);
+
+    Object createReport();
 }

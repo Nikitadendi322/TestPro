@@ -1,5 +1,6 @@
 package com.example.testtesttest.pojo;
 
+import com.example.testtesttest.DTO.EmployeeFullInfo;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,7 +16,7 @@ import lombok.*;
 @Entity
 @Data
 @Table(name = "employee")
-public class Employee {
+public class Employee extends EmployeeFullInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
