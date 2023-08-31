@@ -65,7 +65,7 @@ public class SecurityConfig {
                 new JdbcUserDetailsManager(dataSource);
 
         jdbcUserDetailsManager.setAuthenticationManager(authenticationManager);
-        return jdbcUserDetailsManager;
+        return jdbcUserDetailsManager;пробую сделать комит
     }
 
     @Bean
