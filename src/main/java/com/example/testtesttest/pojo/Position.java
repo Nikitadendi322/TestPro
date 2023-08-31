@@ -1,23 +1,61 @@
 package com.example.testtesttest.pojo;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
+import java.util.List;
+@Getter
 @Entity
 @Table(name = "position")
 public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String position;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_report")
-    private Report report;
+    private Integer id;
+
+    private String name;
+
+
+    @OneToMany(mappedBy = "position")
+    @JsonManagedReference
+    private List<Employee> employee;
     public Position() {
+
     }
-    public Position(int id, String position){
+
+    public Position(Integer id, String name) {
         this.id = id;
-        this.position = position;
+        this.name = name;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Employee> getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(List<Employee> employee) {
+        this.employee = employee;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    @Override
+    public String toString() {
+        return "Position{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

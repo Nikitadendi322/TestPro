@@ -1,20 +1,24 @@
 package com.example.testtesttest.controller;
 
+
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
-@RequestMapping("GET")
+@Profile("test")
+@RequestMapping("/appInfo")
 public class InfoController {
 
-    @GetMapping("appInfo")
-    public String appInfo() {
-        return app;
 
+    @Value("dev")
+    public String appEnv;
+
+    @GetMapping
+    public String GetString() {
+        return appEnv;
     }
-    @Value("${app.env}")
-    private String app;
-
 }

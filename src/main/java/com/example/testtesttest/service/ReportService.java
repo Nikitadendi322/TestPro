@@ -1,15 +1,18 @@
 package com.example.testtesttest.service;
 
-import jakarta.annotation.Resource;
-import org.springframework.http.ResponseEntity;
+import com.example.testtesttest.DTO.EmployeeDTO;
+import com.example.testtesttest.pojo.Report;
 
-import java.io.IOException;
+import java.util.List;
 
 public interface ReportService {
-    public int createReport() throws IOException;
+    Report getStatisticEmployee();
 
-    public ResponseEntity<Resource> upload(int id);
+    Integer getCountEmployees();
 
-    public String saveReportToFile(String reportJson);
-    public ResponseEntity<Resource> getReportById(Integer id);
+    List<EmployeeDTO> showSalaryMin();
+
+    List<EmployeeDTO> showSalaryMax();
+
+    List<EmployeeDTO> showSalaryAvg();
 }

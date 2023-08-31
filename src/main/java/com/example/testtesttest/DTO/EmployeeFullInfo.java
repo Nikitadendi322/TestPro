@@ -2,18 +2,94 @@ package com.example.testtesttest.DTO;
 
 import lombok.*;
 
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString
-@NoArgsConstructor
-@EqualsAndHashCode
 public class EmployeeFullInfo {
-    private String name;
-    private int salary;
-    private String positionName;
 
-    public static EmployeeFullInfo fromEmployeeFullInfo(Object t) {
-        return null;
+    private int id;
+    @Getter
+    private String name;
+
+    @Getter
+    private Integer salary;
+
+    @Getter
+    private String position;
+
+    private int count = 0;
+
+
+    public EmployeeFullInfo(int id, String name, Integer salary, String positionName) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+        this.position = positionName;
     }
-}
+    public EmployeeFullInfo(String name, Integer salary, String positionName) {
+            this.id = count++;
+            this.name = name;
+            this.salary = salary;
+            this.position = positionName;
+        }
+
+    public void setPosition (String position){
+            this.position = position;
+        }
+        public void setId ( int id){
+            this.id = id;
+        }
+
+    public void setName (String name){
+            this.name = name;
+        }
+
+    public void setSalary (Integer salary){
+            this.salary = salary;
+        }
+        public String getPositionName () {
+            return position;
+        }
+        public void setPositionName (String positionName){
+            this.position = positionName;
+        }
+
+    public int getId() {
+        return id;
+    }
+    public String getPosition() {
+        return position;
+    }
+    public void setPosition(String position) {
+        this.position = position;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public Integer getSalary() {
+        return salary;
+    }
+    public void setSalary(Integer salary) {
+        this.salary = salary;
+    }
+    public String getPositionName() {
+        return position;
+    }
+    public void setPositionName(String positionName) {
+        this.position = positionName;
+    }
+
+    @Override
+        public String toString () {
+            return "EmployeeFullInfo{" +
+                    "id=" + id +
+                    ", name='" + name + '\'' +
+                    ", salary=" + salary +
+                    ", position='" + position + '\'' +
+                    '}';
+        }
+    }
+

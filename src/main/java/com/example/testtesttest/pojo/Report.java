@@ -1,35 +1,57 @@
 package com.example.testtesttest.pojo;
 
-
-
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SourceType;
 
+import java.time.Instant;
 
-@Entity
-@Table(name = "report")
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
-@Setter
-@EqualsAndHashCode
-
+@Entity
 public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
+
     @Lob
-    @Column(name = "file", columnDefinition="text")
-    private String file;
+    @Column(columnDefinition = "oid", nullable = false)
+    private String report;
 
-    @OneToOne(mappedBy = "report", optional = false)
-    private Position position;
+    @CreationTimestamp(source = SourceType.DB)
+    @Column(updatable = false, name = "created_at", nullable = false)
+    private Instant createdAt;
+    private String path;
 
-    public Position getPosition() {
-        return position;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setPosition(Position position) {
-        this.position = position;
+    public void setReport(String report) {
+        this.report = report;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getReport() {
+        return report;
+    }
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public String getPath() {
+        return path;
     }
 }
