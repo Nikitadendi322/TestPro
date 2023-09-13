@@ -4,6 +4,7 @@ import com.example.testtesttest.DTO.EmployeeDTO;
 import com.example.testtesttest.DTO.EmployeeFullInfo;
 import com.example.testtesttest.pojo.Employee;
 import io.micrometer.common.lang.Nullable;
+import org.antlr.v4.runtime.tree.pattern.ParseTreePattern;
 import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,7 +43,7 @@ public interface EmployeeService {
     List<EmployeeFullInfo> withHighestSalary();
 
     List<EmployeeFullInfo> withLowSalary();
-    List<Employee> getEmployeesWithPaging(int page, int size);
+    List<Employee> getEmployeesWithPaging(int page, int size, ParseTreePattern paginEmployeeRepository);
 
     void uploadFile(@RequestParam("file") MultipartFile file) throws IOException;
 

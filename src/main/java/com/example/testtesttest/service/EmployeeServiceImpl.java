@@ -13,6 +13,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
+import org.antlr.v4.runtime.tree.pattern.ParseTreePattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ByteArrayResource;
@@ -123,10 +124,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.deleteById(id);
     }
 
-    @Override
-    public List<EmployeeDTO> addEmployee(List<Employee> employee) {
-        return null;
-    }
 
     public List<EmployeeDTO> addEmployee(List<Employee> employees) {
         logger.debug("Create employee: {}", employees);
@@ -185,7 +182,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<Employee> getEmployeesWithPaging(int page, int size) {
+    public List<Employee> getEmployeesWithPaging(int page, int size, ParseTreePattern paginEmployeeRepository) {
         Pageable employeeOfConcretePage = PageRequest.of(page, size);
         Page<Employee> pages = paginEmployeeRepository.findAll(employeeOfConcretePage);
         logger.info("Create paging, wherer page = {}, size = {}", page, size);

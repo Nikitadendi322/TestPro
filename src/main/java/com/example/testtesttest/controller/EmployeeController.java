@@ -4,6 +4,7 @@ import com.example.testtesttest.DTO.EmployeeDTO;
 import com.example.testtesttest.DTO.EmployeeFullInfo;
 import com.example.testtesttest.pojo.Employee;
 import com.example.testtesttest.service.EmployeeService;
+import org.antlr.v4.runtime.tree.pattern.ParseTreePattern;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +16,7 @@ import java.util.List;
 @RequestMapping("/employee")
 public class EmployeeController {
     private final EmployeeService employeeService;
+    private ParseTreePattern paginEmployeeRepository;
 
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
@@ -77,7 +79,7 @@ public class EmployeeController {
 
     @GetMapping("/paging")
     public List<Employee> getEmployeesWithPaging(@RequestParam("page") int page, @RequestParam("size") int size) {
-        return employeeService.getEmployeesWithPaging(page, size);
+        return employeeService.getEmployeesWithPaging(page, size, paginEmployeeRepository);
     }
 
     @GetMapping("/withHighestSalary")

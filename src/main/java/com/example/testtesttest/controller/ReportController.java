@@ -28,7 +28,7 @@ public class ReportController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Resource> find(@PathVariable int id) {
-        Resource resource = employeeService.findReport(id);
+        Resource resource = (Resource) employeeService.findReport(id);
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.APPLICATION_JSON)
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"report.json\"")
