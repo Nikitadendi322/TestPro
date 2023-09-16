@@ -9,6 +9,7 @@ import java.util.List;
 
 public class EmployeeConstant {
 
+
     public static final Position pos = new Position(1, "Java");
     public static final Report rep = new Report();
     public static final Employee EMPLOYEE1 = new Employee(1, "Nik", 20000, pos, rep);
