@@ -22,6 +22,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.testtesttest.constant.EmployeeConstant.pos;
+import static com.example.testtesttest.constant.EmployeeConstant.rep;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -77,7 +79,7 @@ public class EmployeeControllerTest {
     void editEmployee_changName() throws Exception {
         int id = createTestEmployee("Nick").getId();
         mockMvc.perform(put("/employee/{id}", id)
-                        .content(objectMapper.writeValueAsString(new Employee(id, "Michail")))
+                        .content(objectMapper.writeValueAsString(new Employee(id, "Michail", 20000, pos, rep)))
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());

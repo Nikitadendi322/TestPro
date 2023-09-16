@@ -1,6 +1,7 @@
 package com.example.testtesttest.security;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -17,12 +18,16 @@ public class AppUserDetails implements UserDetails {
         this.userDetails = userDetails;
     }
 
+    public AppUserDetails(AppUserDto userDetails) {
+        this.userDetails = userDetails;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Optional.ofNullable(userDetails)
                 .map(AppUserDto::getRole)
                 .map(role -> "ROLE_"+ role)
-                .map(userDetails::new)
+                .map(SimpleGrantedAuthority::new)
                 .map(List::of)
                 .orElse(Collections.emptyList());
     }
@@ -60,4 +65,6 @@ public class AppUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 }

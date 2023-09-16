@@ -13,7 +13,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
-import org.antlr.v4.runtime.tree.pattern.ParseTreePattern;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ByteArrayResource;
@@ -37,13 +37,14 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService {
+public abstract class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final ReportRepository reportRepository;
     Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
     private final ObjectMapper objectMapper;
     private final Optional optional;
     private final EmployeeMapper employeeMapper;
+    private EmployeeRepository paginEmployeeRepository;
 
     public EmployeeServiceImpl(EmployeeRepository employeeRepository, ReportRepository reportRepository, ObjectMapper objectMapper, Optional optional, EmployeeMapper employeeMapper) {
         this.employeeRepository = employeeRepository;
@@ -182,7 +183,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public List<Employee> getEmployeesWithPaging(int page, int size, ParseTreePattern paginEmployeeRepository) {
+    public List<Employee> getEmployeesWithPaging(int page, int size) {
         Pageable employeeOfConcretePage = PageRequest.of(page, size);
         Page<Employee> pages = paginEmployeeRepository.findAll(employeeOfConcretePage);
         logger.info("Create paging, wherer page = {}, size = {}", page, size);

@@ -1,5 +1,6 @@
 package com.example.testtesttest.pojo;
 
+import ch.qos.logback.classic.spi.LoggingEventVO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
@@ -26,7 +27,7 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Integer id, String name) {
+    public Employee(Integer id, String name, int i, Position pos, Report rep) {
         this.id = id;
         this.name = name;
     }
@@ -44,6 +45,11 @@ public class Employee {
     public Employee(String name) {
         this.name = name;
     }
+
+    public static LoggingEventVO builder() {
+        return new LoggingEventVO();
+    }
+
     public void setPosition(Position position) {
         this.position = position;
     }

@@ -45,6 +45,8 @@ public interface EmployeeService {
     List<EmployeeFullInfo> withLowSalary();
     List<Employee> getEmployeesWithPaging(int page, int size, ParseTreePattern paginEmployeeRepository);
 
+    List<Employee> getEmployeesWithPaging(int page, int size);
+
     void uploadFile(@RequestParam("file") MultipartFile file) throws IOException;
 
     int generateReport();
