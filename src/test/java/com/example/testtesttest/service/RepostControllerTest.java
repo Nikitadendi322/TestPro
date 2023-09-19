@@ -26,7 +26,7 @@ public class RepostControllerTest {
     @Autowired
     public EmployeeRepository employeeRepository;
     @Autowired
-    private ObjectMapper objectMapper;
+    public ObjectMapper objectMapper;
     @BeforeEach
     public void cleanData() {
         employeeRepository.deleteAll();

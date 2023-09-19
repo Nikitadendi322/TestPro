@@ -2,7 +2,7 @@ package com.example.testtesttest.security;
 
 import lombok.Getter;
 
-import javax.management.relation.Role;
+import com.example.testtesttest.pojo.Role;
 
 @Getter
 public class AppUserDto {
