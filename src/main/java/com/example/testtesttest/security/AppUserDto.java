@@ -26,4 +26,7 @@ public class AppUserDto {
     public void setRole(Role role) {
         this.role = role;
     }
+    public void getRole(Role role){
+        this.role=role;
+    }
 }

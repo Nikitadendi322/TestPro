@@ -1,13 +1,16 @@
 package com.example.testtesttest.security;
 
 import com.example.testtesttest.pojo.AppUser;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
+
 @Component
 @Getter
 @Setter
+@Builder
 public class AppUserMapper {
     public AppUserDto toDto(AppUser user) {
         AppUserDto userDto = new AppUserDto();

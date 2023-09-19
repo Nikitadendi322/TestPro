@@ -41,12 +41,12 @@ public class EmployeeControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
     @BeforeEach
-    private void cleanData() {
+    public void cleanData() {
         employeeRepository.deleteAll();
     }
 
-    private Employee createTestEmployee(String name) {
-        Employee employee = new Employee(name);
+    private Employee createTestEmployee() {
+        Employee employee = new Employee("Nick");
         return employeeRepository.save(employee);
     }
 
@@ -77,7 +77,7 @@ public class EmployeeControllerTest {
     }
     @Test
     void editEmployee_changName() throws Exception {
-        int id = createTestEmployee("Nick").getId();
+        int id = createTestEmployee().getId();
         mockMvc.perform(put("/employee/{id}", id)
                         .content(objectMapper.writeValueAsString(new Employee(id, "Michail", 20000, pos, rep)))
                         .contentType(MediaType.APPLICATION_JSON)

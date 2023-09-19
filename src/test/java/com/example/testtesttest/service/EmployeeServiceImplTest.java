@@ -17,7 +17,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.mock.web.MockMultipartFile;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +43,7 @@ public class EmployeeServiceImplTest {
     @InjectMocks
     private EmployeeServiceImpl employeeService;
     @Mock
-    private PaginEmployeeRepository paginEmployeeRepository;
+    private final EmployeeRepository paginEmployeeRepository;
 
     @Test
     public void getAllEmployees_Test_OK() {
@@ -112,7 +111,7 @@ public class EmployeeServiceImplTest {
     }
 
 
-    public EmployeeServiceImplTest(EmployeeRepository mockRepository, EmployeeServiceImpl employeeService, PaginEmployeeRepository paginEmployeeRepository) {
+    public EmployeeServiceImplTest(EmployeeRepository mockRepository, EmployeeServiceImpl employeeService, EmployeeRepository paginEmployeeRepository) {
         this.mockRepository = mockRepository;
         this.employeeService = employeeService;
         this.paginEmployeeRepository = paginEmployeeRepository;

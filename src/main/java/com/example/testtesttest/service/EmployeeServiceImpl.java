@@ -14,6 +14,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.transaction.Transactional;
 
+import org.antlr.v4.runtime.tree.pattern.ParseTreePattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.ByteArrayResource;
@@ -37,21 +38,23 @@ import java.util.stream.Collectors;
 
 
 @Service
-public abstract class EmployeeServiceImpl implements EmployeeService {
+public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final ReportRepository reportRepository;
     Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
     private final ObjectMapper objectMapper;
+
     private final Optional optional;
     private final EmployeeMapper employeeMapper;
-    private EmployeeRepository paginEmployeeRepository;
+    private final EmployeeRepository paginEmployeeRepository;
 
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository, ReportRepository reportRepository, ObjectMapper objectMapper, Optional optional, EmployeeMapper employeeMapper) {
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository, ReportRepository reportRepository, ObjectMapper objectMapper, Optional optional, EmployeeMapper employeeMapper, EmployeeRepository paginEmployeeRepository) {
         this.employeeRepository = employeeRepository;
         this.reportRepository = reportRepository;
         this.objectMapper = objectMapper;
         this.optional = optional;
         this.employeeMapper = employeeMapper;
+        this.paginEmployeeRepository = paginEmployeeRepository;
     }
 
     @Override
@@ -180,6 +183,11 @@ public abstract class EmployeeServiceImpl implements EmployeeService {
     public List<EmployeeFullInfo> withLowSalary() {
         logger.info("Select employee with low salsry.");
         return employeeRepository.withLowSalary();
+    }
+
+    @Override
+    public List<Employee> getEmployeesWithPaging(int page, int size, ParseTreePattern paginEmployeeRepository) {
+        return null;
     }
 
     @Override
