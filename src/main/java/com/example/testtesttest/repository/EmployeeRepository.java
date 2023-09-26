@@ -9,10 +9,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
     List<Employee> employees = new ArrayList<>();
 
@@ -28,26 +30,30 @@ public interface EmployeeRepository extends CrudRepository<Employee, Integer> {
     List<EmployeeDTO> findByIdGreaterThan(int number);
     Page<Employee> findAll(Pageable employeeOfConcretePage);
 
-    @Query("SELECT new com.example.testtesttest.dto" +
+    @Query("SELECT new com.example.testtesttest.DTO." +
             "EmployeeFullInfo(e.id, e.name , e.salary , p.name) " +
             "FROM Employee e join fetch Position p " +
             "WHERE e.position = p and e.id= :id")
     List<EmployeeFullInfo> findAllEmployeeFullInfo(@Param("id") int id);
-    @Query("SELECT new com.example.testtesttest.dto." +
+    @Query("SELECT new com.example.testtesttest.DTO." +
             "EmployeeFullInfo(e.name , e.salary , p.name) " +
             "FROM Employee e join fetch Position p " +
             "WHERE e.position = p and p.name = :position")
     List<EmployeeFullInfo> getEmployeesFullPosition(@Param("position") String position);
-    @Query("SELECT new com.example.testtesttest.dto." +
+    @Query("SELECT new com.example.testtesttest.DTO." +
             "EmployeeFullInfo(e.name , e.salary , p.name) " +
             "FROM Employee e  left join Position p on p.id= e.position.id " +
             "WHERE e.salary = (select  max (e.salary) from  Employee e) ")
     List<EmployeeFullInfo> withHighestSalary();
-    @Query(value = "SELECT new com.example.testtesttest.dto." +
+    @Query(value = "SELECT new com.example.testtesttest.DTO." +
             "EmployeeFullInfo(e.name , e.salary , p.name) " +
             "FROM Employee e  left join Position p on p.id= e.position.id " +
             "WHERE e.salary = (select  min (e.salary) from  Employee e) ")
     List<EmployeeFullInfo> withLowSalary();
+    @Query(value = "SELECT new com.example.testtesttest.DTO."+
+            "EmployeeFullInfo(e.name , e.salary , p.name) " +
+            "FROM Employee e  left join Position p on p.id= e.position.id " +
+            "WHERE e.salary = (select  max (e.salary) from  Employee e) ")
     List<ReportDto> buildReport();
     @Query(value = "update employee set name = :name, " +
             "salary = :salary where id = :id", nativeQuery = true)
