@@ -18,8 +18,7 @@ public class AppUserDetails implements UserDetails {
         this.userDetails = userDetails;
     }
 
-    public AppUserDetails(AppUserDto userDetails) {
-        this.userDetails = userDetails;
+    public AppUserDetails() {
     }
 
     @Override
