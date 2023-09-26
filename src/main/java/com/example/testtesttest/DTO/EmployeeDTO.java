@@ -12,7 +12,7 @@ public class EmployeeDTO {
     @Getter
     private String name;
     private Integer salary;
-
+    @Getter
     private PositionDto position;
     private int count = 0;
 
@@ -60,16 +60,10 @@ public class EmployeeDTO {
         return employee;
     }
 
-    public Integer getId() {
-        return id;
-    }
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
     public void setName(String name) {
         this.name = name;
     }
@@ -80,12 +74,8 @@ public class EmployeeDTO {
     public void setSalary(int salary) {
         this.salary = salary;
     }
-    public void setSalary(Integer salary) {
-        this.salary = salary;
-    }
-    public PositionDto getPosition() {
-        return position;
-    }
+
+
 
     @Override
     public String toString() {

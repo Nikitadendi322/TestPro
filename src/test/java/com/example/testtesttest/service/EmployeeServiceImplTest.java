@@ -43,7 +43,7 @@ public class EmployeeServiceImplTest {
     @InjectMocks
     private EmployeeServiceImpl employeeService;
     @Mock
-    private final EmployeeRepository paginEmployeeRepository;
+    private  EmployeeRepository paginEmployeeRepository;
 
     @Test
     public void getAllEmployees_Test_OK() {
@@ -110,12 +110,6 @@ public class EmployeeServiceImplTest {
         assertEquals(employeeDTO, actualEmployeeDTOList);
     }
 
-
-    public EmployeeServiceImplTest(EmployeeRepository mockRepository, EmployeeServiceImpl employeeService, EmployeeRepository paginEmployeeRepository) {
-        this.mockRepository = mockRepository;
-        this.employeeService = employeeService;
-        this.paginEmployeeRepository = paginEmployeeRepository;
-    }
 
     @Test
     void upload_NO_OK_Exception() throws NullPointerException {

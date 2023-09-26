@@ -33,14 +33,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @Transactional
 @SpringBootTest()
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(addFilters = false)
 
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class EmployeeControllerTest {
     @Autowired
     MockMvc mockMvc;
-    @Autowired
-    MockMultipartFile mockMultipartFile;
     @Autowired
     public EmployeeRepository employeeRepository;
     @Autowired

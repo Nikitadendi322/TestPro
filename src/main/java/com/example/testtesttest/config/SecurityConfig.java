@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,12 +24,12 @@ import javax.sql.DataSource;
 public class SecurityConfig {
 
 
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider(PasswordEncoder passwordEncoder) {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setPasswordEncoder(passwordEncoder);
-        return authenticationProvider;
-    }
+    //@Bean
+    //public DaoAuthenticationProvider authenticationProvider(PasswordEncoder passwordEncoder) {
+        //DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        //authenticationProvider.setPasswordEncoder(passwordEncoder);
+       // return authenticationProvider;
+    //}
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
