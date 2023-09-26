@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: liquibase/create_employee.yml
+  - include:
+      file: liquibase/create_position.yml
+  - include:
+      file: liquibase/create_report.yml
+  - include:
+      file: liquibase/create_appUser.yml
